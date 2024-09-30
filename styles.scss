@@ -1,0 +1,494 @@
+@charset "utf-8";
+
+
+// ------------------------------------------------------
+//* Slot machine ---
+
+
+html {
+  overflow: hidden;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #333;
+  font-weight: bold;
+  height: 100vh;
+  overflow: hidden;
+  @media (min-width: 431px){
+    background-color: black;
+  }
+  transform-style: preserve-3d;
+  perspective: 1500px;
+}
+
+.video {
+  display: none;
+  @media (min-width: 431px){
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.unit { 
+  width: 98%;
+  height: 100vh;
+  overflow: hidden;
+  margin: 20px auto 0; 
+  @media (min-width: 431px){
+    display: none;
+  }
+  .unit-inner {
+      .active-btn-container {
+        .active-btn {
+          padding: .5rem;
+          padding-top: .6rem;
+          font-size: 1.2rem;
+          letter-spacing: 1px;
+          text-align: center;
+          border-radius: 20px;
+          margin: 5px 5px; 
+        }
+        .check-out {
+          width: calc(60% - 10px);
+          margin: 0 auto 10px;   
+          color: rgb(255, 221, 25);      
+          border: 8px outset rgb(254, 188, 13); 
+        }
+        .active-btn-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .btn-insert {
+            font-size: 1rem;
+            color: rgb(115, 225, 20);
+            border: 8px outset rgb(79, 166, 1);
+            width: calc(50% - 10px); // this on
+            // padding: .5rem .7rem; // this off
+          }
+          .betX-wrapper {
+            // width: calc(50% - 10px); // this off
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0px; // adjustable 
+            .btn-bet2x {
+              color: #fff;
+              color: rgb(189, 2, 212);
+              border: 8px outset rgb(189, 2, 212); 
+            }
+            .btn-bet5x {
+              color: #fff;
+              color: rgb(201, 43, 40);
+              border: 8px outset rgb(252, 55, 53);
+            }
+            .btn-bigSpinX {
+              letter-spacing: 0px;
+              padding: .5rem .6rem .4rem; 
+              border: 8px outset #a1a3a4; 
+              color: rgb(213, 48, 45);
+            }
+          }
+        } 
+      }
+    
+      .point-container {
+        display: flex;
+        justify-content: center;
+        margin: 10px auto;
+        width: 100%;
+        .point-wrapper {
+          width: calc(25% - 6px);
+          margin: 0 3px;
+          padding: .3rem;
+          border-radius: 20px;
+          border: 4px outset rgb(186, 180, 180);  
+          .point-text {
+            font-size: .8rem;
+            margin-top: 3px;
+            text-align: center;
+            letter-spacing: 1px;
+          }
+          .point {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 5px;
+          }
+        }
+        .win-wrapper {
+          .win-text {
+            color: yellow;
+          }
+          .win-point {
+            color: rgb(226, 219, 219);  
+          }
+        }
+        .total-wrapper {
+          .total-text {
+            color: rgb(6, 223, 6); 
+          }
+          .total-point {
+            color: rgb(255, 255, 255);
+          }
+        }
+        .bet-wrapper {
+          .bet-text {
+            color: #fff; 
+          }
+          .bet-point {
+            color: rgb(0, 174, 255); 
+          }
+        }
+        .dept-wrapper {
+          .dept-text {
+            color: rgb(0, 174, 255); 
+          }
+          .dept-point {
+            color: #fff; 
+          }
+        }
+      }
+
+    .machine-container {
+      width: 98%;
+      margin: auto;
+      main {
+        width: 100%;
+        height: 250px; //bc 220px 
+        padding: 10px 3px 40px; //bc 40px 
+        background-color: #313232;
+        border: 4px solid rgb(103, 102, 102);
+        border-radius: 12px;
+        margin: 10px auto 15px; 
+        display: flex;
+        justify-content: space-around;
+        .panel {
+          width: calc(33% - 10px);
+          height: calc(75% - 10px);
+          margin: 5px;
+          position: relative;  
+          background-color: #fff; //* for transparent img
+          border-radius: 10px; //* for transparent img
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+          }
+          .stop {
+            width: 95%;
+            height: 60px;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 50px;
+            letter-spacing: 1px;
+            color: #ff1f27; 
+            border: 5px outset #ef454a;
+            box-shadow: 0 4px 0 #9a423b;  
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 14px auto 0;  //* check
+              padding-top: 1px;
+            &:active {
+              margin-top: 20px;  //* check
+              box-shadow: 0 0px 0 #9a423b;
+            }
+          }
+        }
+      }
+      // ORIGINALLY STRETCHED IMAGE <main> height: 250px; padding: 10px 3px 40px;
+      // .stop -- margin: 14px auto 0; &:active: margin-top: 20px; normally 18px;
+      // HORIZONTAL SIZE <main> height: 220px; padding: 10px 3px 40px;
+      // .stop -- margin: 8px auto 0; &:active: margin-top: 14px; 
+      #spin {
+        width: 100%;
+        height: 60px;
+        font-size: 1.3rem;
+        text-align: center;
+        line-height: 47.5px;
+        letter-spacing: 2px;
+        color: #45b4ff; 
+        border: 5px outset #3498db; 
+        box-shadow: 0 6px 0 #226794;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 14px auto 0;
+          padding-top: 2px;
+        &:active {
+          margin-top: 20px; 
+          box-shadow: 0 0px 0 #226794;
+        }
+      }
+    }
+  }
+}
+
+.untitled { 
+  position: absolute;
+  top: 570px; 
+  left: 0;
+  right: 0;
+  width: 92%;
+  height: 125px;  //  140px for 67plus, 125px for 12
+  border: 8px solid rgb(70, 69, 68);
+  border-radius: 20px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: #ff00ff;
+  .untitled-img {
+    display: inline-block;
+    width: 140px; // 150px for 67plus, 140px for 12
+    height: 140px; // 120px for 12
+    margin: -5px -15px;
+  }
+  .black-layer-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .black-layer {
+      position: relative;
+      display: inline-block;
+      width: 33.3%;
+      height: 100%;
+      border-radius: 10px;
+      background-color: rgba(51, 51, 51, 0.81);
+    }
+    .reelHandler.active {
+      background-color: transparent;
+      animation: pulseReelHandler .3s linear infinite;
+    }
+  }
+}
+
+.rectangle {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: confetti 2s linear forwards;
+  aspect-ratio: 1;
+  z-index: 100;
+}
+
+.giphy {
+  position: absolute;
+  bottom: 0px;
+  width:100%;
+  height: var(--height);
+  pointer-events: none;
+  .frame {
+    position: absolute;
+    bottom: 0px;
+    left: var(--left);
+    transform: translateX(-50%);
+    width:150%;
+    height: 150%;
+    transition: 1s;
+    opacity: 0;
+    display: none;
+    &.active {
+      display: block;
+    }
+    &.alpha {
+      opacity: 1;
+      transition: 2s;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------
+
+.js_inActive {
+  opacity: .5;
+}
+
+.js_unMatched-effect {  // panel shadow effect 
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  display: inline-block;
+  border-radius: 10px;
+  // background-color: rgba(51, 51, 51, 0.146);
+  background-color: rgba(51, 51, 51, 0.392); // for black background
+}
+
+//* keyframes -----------------------------------------------------------
+
+@keyframes confetti {
+  0% { top: -200px; }
+  25% {
+    transform: rotateX(200deg) rotateY(600deg) 
+    scale(var(--scale)) translateX(var(--tx)) skew(var(--skew));
+  }
+  75% {
+    transform: rotateX(var(--x)) rotateY(var(--y)) 
+    translateX(var(--tx)) skew(var(--skew));
+    opacity: 1;
+  }
+  100% {
+    top: var(--top);
+    transform: rotate(100deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulseReelHandler {
+  0% { background-color: rgba(51, 51, 51, 0.81);}
+  100% { background-color: transparent;}
+}
+
+.js_stopBtnAnimation {
+  animation: stopBtnAnimation .1s; // stop .1s 
+}
+.js_spinBtnAnimation {
+  animation: spinBtnAnimation .2s; // spin .2s 
+}
+
+@keyframes stopBtnAnimation {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 4px 0 #9a423b;
+  }
+  50% {
+    transform: translateY(6px);  // box shadow px + 2px 
+    box-shadow: 0 0px 0 #9a423b;
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 4px 0 #9a423b;
+  }
+}
+
+@keyframes spinBtnAnimation {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 6px 0 #226794;
+  }
+  50% {
+    transform: translateY(8px); // box shadow px + 2px 
+    box-shadow: 0 0px 0 #226794;
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 6px 0 #226794;
+  }
+}
+
+@keyframes bigSpinFlash {
+  0% { color: #440607; }
+  30% { color: #ff0109; }
+  70% { color: #ff0109; }
+  100% { color: #ff0109; }
+}
+
+@keyframes bigSpinX {
+  0% { color: #440607; }
+  30% { color: #ff0109; }
+  70% { color: #ff0109; }
+  100% { color: #ff0109; }
+}
+
+@keyframes bigSpinX {
+  0% {
+    box-shadow: 
+    3px 3px 12px 1px #eff1f4, 
+    3px -3px 12px 1px #eff1f4, 
+    -3px 3px 12px 1px #eff1f4,
+    -3px -3px 12px 1px #eff1f4;
+    opacity: 0;
+    border: 8px outset #bec1c4; 
+  }
+  100% {
+    opacity: 1;
+    color: red;
+    border: 8px outset #bec1c4; 
+  }
+}
+// -----------------------------------------------------
+
+.js_insertPoint-textColorBright {
+  color: rgb(196, 255, 17) !important; 
+}
+
+.js_bet2x-textColorBright {
+  color: rgb(250, 46, 250) !important; 
+}
+
+.js_bet5x-textColorBright {
+  color: rgb(255, 37, 34) !important; 
+}
+
+.js_winRed { 
+  color: #ff1f27 !important; 
+}
+
+.js_bigSpinRed {
+  // color: rgb(255, 37, 34) !important; 
+  font-size: .95rem !important;
+  animation: bigSpinFlash .3s ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.js_bigSpinX {
+  color: rgb(252, 55, 53) !important;
+  animation: bigSpinX .5s ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+// -----------------------------------------------------
+
+.js_insertPoint-activeEffect {    
+  box-shadow: 
+  3px 3px 10px rgb(179, 255, 0), 
+  3px -3px 10px rgb(179, 255, 0), 
+  -3px 3px 10px rgb(179, 255, 0),
+  -3px -3px 10px rgb(179, 255, 0);
+}
+
+.js_bet2x-activeEffect {
+  box-shadow: 
+  3px 3px 12px 1px rgb(228, 8, 221),   
+  3px -3px 12px 1px rgb(228, 8, 221),  
+  -3px 3px 12px 1px rgb(228, 8, 221),  
+  -3px -3px 12px 1px rgb(228, 8, 221); 
+}
+
+.js_bet5x-activeEffect {
+  box-shadow: 
+  3px 3px 12px 1px rgb(255, 25, 0), 
+  3px -3px 12px 1px rgb(255, 25, 0), 
+  -3px 3px 12px 1px rgb(255, 25, 0),
+  -3px -3px 12px 1px rgb(255, 25, 0);
+}
+
+// -----------------------------------------------------
+
+.js_checkOut-win {
+  color: #fff !important;
+  border: 8px outset rgb(252, 55, 53) !important; 
+}
+.js_checkOut-lost {
+  color: #fff !important;
+  border: 8px outset #3498db !important;
+}
+
+// -----------------------------------------------------
+//-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
