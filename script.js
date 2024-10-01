@@ -83,10 +83,11 @@ class Panel {
   getRandomImg() {
     // const images = ['img/diamond.jpg','img/diamond.jpg','img/seven.jpg','img/diamond.jpg','img/diamond.jpg','img/seven.jpg'];
     // const images = ['img/seven.jpg','img/seven.jpg','img/seven.jpg','img/diamond.jpg','img/seven.jpg'];
-    // const images = ['img/bar.jpg','img/diamond.jpg','img/bar.jpg','img/diamond.jpg','img/bar.jpg'];
+    // const images = ['img/bar.jpg','img/seven.jpg','img/bar.jpg','img/seven.jpg','img/bar.jpg','img/seven.jpg'];
     // const images = ['img/cherry.jpg','img/cherry.jpg','img/cherry.jpg','img/cherry.jpg','img/watermelon.jpg'];
     // const images = ['img/watermelon.jpg','img/watermelon.jpg','img/watermelon.jpg','img/cherry.jpg','img/watermelon.jpg'];
     // const images = ['img/bell.jpg','img/bell.jpg','img/bell.jpg','img/cherry.jpg','img/bell.jpg'];
+
     const images = ['img/bell.jpg','img/cherry.jpg','img/watermelon.jpg',
       'img/diamond.jpg', 'img/bar.jpg', 'img/seven.jpg'];
     return images[Math.floor(Math.random() * images.length)];
@@ -175,8 +176,7 @@ function checkForUnMatched() {
 
 function bigSpinFailure() {
   if(bigSpinX.classList.contains('activate') && !pointsAdded) {
-    giphyEmbedFrame('.failure', 50, 46, 3000); //*og
-    // giphyEmbedFrame('.failure', 55, 54, 3000); //*sexy
+    giphyEmbedFrame('.failure', 50, 46, 3000);
   }
 }
 
@@ -248,8 +248,8 @@ function getData() {
   total = parseFloat(localStorage.getItem('total'));
   currentDept = parseFloat(localStorage.getItem('currentDept'));
   adjustPointsFontSize();
-}
-if(localStorage.getItem('total')) { getData(); } //*
+} if(localStorage.getItem('total')) { getData() } //*
+
 
 function adjustPointsFontSize() {
   if(total > 999999) {
@@ -317,11 +317,11 @@ function pointAdd_matchedAll() {
 
 function pointAdd_twoPair() {
   if(panels[2].img.src.includes('seven')) {
-    checkBetX(50); pointsAdded = true;
-  } else if(panels[2].img.src.includes('diamond')) {
     checkBetX(200); pointsAdded = true;
+  } else if(panels[2].img.src.includes('diamond')) {
+    checkBetX(300); pointsAdded = true;
   } else if(panels[2].img.src.includes('bar')) {
-    checkBetX(100); pointsAdded = true;
+    checkBetX(200); pointsAdded = true;
   } else if(panels[2].img.src.includes('watermelon')) {
     checkBetX(50); pointsAdded = true;
   } else if(panels[2].img.src.includes('cherry')) {
@@ -337,17 +337,14 @@ function pointAdd_twoPairExtraSeven() {
   if(panels[1].img.src.includes('seven') 
       && panels[2].img.src.includes('diamond')) {
     checkBetX(3000); pointsAdded = true;
-    confettiShower(200, 1); //***
-    giphyEmbedFrame('.sevenDiamond', 60, 55, 4000); //*og
-    // giphyEmbedFrame('.sevenDiamond', 58, 50, 4000); //*sexy
+    confettiShower(200, 1);
+    giphyEmbedFrame('.sevenDiamond', 60, 55, 4000); 
   }
   else if(panels[1].img.src.includes('seven') 
       && panels[2].img.src.includes('bar')) {
-    checkBetX(750); pointsAdded = true;
-    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    confettiShower(50, 150); //***
-    giphyEmbedFrame('.sevenBar', 45, 55, 3500); //*og
-    // giphyEmbedFrame('.sevenBar', 58, 50, 3500); //*sexy
+    checkBetX(1250); pointsAdded = true;
+    confettiShower(100, 150); 
+    giphyEmbedFrame('.sevenBar', 45, 55, 4000);
   }
   else if(panels[1].img.src.includes('seven') 
       && panels[2].img.src.includes('watermelon')) {
@@ -369,16 +366,14 @@ function pointAdd_twoPairExtraDiamond() {
   if(panels[1].img.src.includes('diamond') 
       && panels[2].img.src.includes('seven')) {
     checkBetX(2500); pointsAdded = true;
-    confettiShower(200, 1); //***
-    giphyEmbedFrame('.diamondSeven', 60, 53, 4000); //*og
-    // giphyEmbedFrame('.diamondSeven', 50, 46, 4000); //*sexy58
+    confettiShower(200, 1);
+    giphyEmbedFrame('.diamondSeven', 60, 53, 4000); 
   }
   else if(panels[1].img.src.includes('diamond') 
       && panels[2].img.src.includes('bar')) {
-    checkBetX(1000); pointsAdded = true;
-    confettiShower(150, 1); //***
-    giphyEmbedFrame('.diamondBar', 40, 47, 3500); //*og
-    // giphyEmbedFrame('.diamondBar', 50, 46, 3500); //*sexy
+    checkBetX(1250); pointsAdded = true;
+    confettiShower(150, 1); 
+    giphyEmbedFrame('.diamondBar', 40, 47, 3500); 
   }
   else if(panels[1].img.src.includes('diamond') 
       && panels[2].img.src.includes('watermelon')) {
@@ -399,14 +394,15 @@ function pointAdd_twoPairExtraDiamond() {
 function pointAdd_twoPairExtraBar() {
   if(panels[1].img.src.includes('bar') 
       && panels[2].img.src.includes('seven')) {
-    checkBetX(2000); pointsAdded = true;
+    checkBetX(1250); pointsAdded = true;
+    confettiShower(100, 150); 
+    giphyEmbedFrame('.barSeven', 48, 50, 4000);
   }
   else if(panels[1].img.src.includes('bar') 
       && panels[2].img.src.includes('diamond')) {
-    checkBetX(1250); pointsAdded = true;
-    confettiShower(150, 1); //***
-    giphyEmbedFrame('.barDiamond', 50, 50, 4000); //*og
-    // giphyEmbedFrame('.barDiamond', 55, 60, 4000); //*sexy
+    checkBetX(1000); pointsAdded = true;
+    confettiShower(150, 1); 
+    giphyEmbedFrame('.barDiamond', 50, 50, 4000); 
   }
   else if(panels[1].img.src.includes('bar') 
       && panels[2].img.src.includes('watermelon')) {
@@ -429,9 +425,8 @@ function pointRate(arg) {
     pointsAdded = true;
       total += 5000 * arg;
       winPoint.textContent = 5000 * arg;
-      confettiShower(300, 1); //***
-      giphyEmbedFrame('.threeSeven', 70, 53, 5000); //*og
-      // giphyEmbedFrame('.threeSeven', 50, 40, 5000); //*sexySeven
+      confettiShower(300, 1); 
+      giphyEmbedFrame('.threeSeven', 70, 53, 5000);
     winRed_add_bigSpinRed_remove();
   } else if(panels[2].img.src.includes('diamond')) {
     setTimeout(() => { //* BIG SPIN //* BIG SPIN
@@ -454,39 +449,40 @@ function pointRate(arg) {
     pointsAdded = true;
       total += 1500 * arg;
         winPoint.textContent = 1500 * arg;
-      confettiShower(150, 1); //***
-      giphyEmbedFrame('.bar', 55, 49, 3500); //*og
-      // giphyEmbedFrame('.bar', 53, 47, 3500); //*sexyBar55
+      confettiShower(150, 1); 
+      giphyEmbedFrame('.bar', 55, 49, 3500);
     winRed_add_bigSpinRed_remove();
   } else if(panels[2].img.src.includes('watermelon')) {
     pointsAdded = true;
       total += 200 * arg;
         winPoint.textContent = 200 * arg;
-      confettiShower(50, 150); //***
-      giphyEmbedFrame('.watermelon', 55, 60, 3500); //*og
-      // giphyEmbedFrame('.watermelon', 55, 57, 4000); //*sexyWatermelon57
+      confettiShower(50, 150); 
+      giphyEmbedFrame('.watermelon', 57, 55, 3500); //bc60/47
     winRed_add_bigSpinRed_remove();
   } else if(panels[2].img.src.includes('cherry')) {
     pointsAdded = true;
       total += 200 * arg;
         winPoint.textContent = 200 * arg;
-      confettiShower(50, 100); //***
-      giphyEmbedFrame('.cherry', 50, 70, 3000); //*og
-      // giphyEmbedFrame('.cherry', 52, 60, 3500); //*sexyCherry
+      confettiShower(50, 100);
+      giphyEmbedFrame('.cherry', 56, 65, 3000); //bc70/55
     winRed_add_bigSpinRed_remove();
   } else if(panels[2].img.src.includes('bell')) {
     pointsAdded = true;
       total += 150 * arg;
         winPoint.textContent = 150 * arg;
-      confettiShower(30, 100); //***
-      giphyEmbedFrame('.bell', 40, 60, 3000); //*og
-      // giphyEmbedFrame('.bell', 52, 65, 3000); //*sexyBell
+      confettiShower(30, 100); 
+      giphyEmbedFrame('.bell', 43, 60, 3000); 
     winRed_add_bigSpinRed_remove();
   }
   // if(insertPoint.classList.contains('js_blank')) { // BIG SPIN READ TEST 
   //   console.log('contain read in pointRate');
   // }
 }
+
+
+
+
+
 
 //* check betX -----------------------------------------------------------
 
@@ -744,6 +740,7 @@ const checkOut = document.querySelector('.check-out');
   }); 
 
 const spinBtn = document.getElementById('spin');
+  if(total > 0) { spinBtn.textContent = 'SPIN'}
   spinBtn.addEventListener('click', () => { 
     if(confetti) return;
     if(bigSpin) return;
