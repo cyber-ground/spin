@@ -81,15 +81,15 @@ class Panel {
   } //* OUT OF Constructor 
 
   getRandomImg() {
-    const images = ['img/diamond.jpg','img/diamond.jpg','img/seven.jpg','img/diamond.jpg','img/diamond.jpg','img/seven.jpg'];
+    // const images = ['img/diamond.jpg','img/diamond.jpg','img/seven.jpg','img/diamond.jpg','img/diamond.jpg','img/seven.jpg'];
     // const images = ['img/seven.jpg','img/seven.jpg','img/seven.jpg','img/diamond.jpg','img/seven.jpg'];
     // const images = ['img/bar.jpg','img/seven.jpg','img/bar.jpg','img/seven.jpg','img/bar.jpg','img/seven.jpg'];
     // const images = ['img/cherry.jpg','img/cherry.jpg','img/cherry.jpg','img/cherry.jpg','img/watermelon.jpg'];
     // const images = ['img/watermelon.jpg','img/watermelon.jpg','img/watermelon.jpg','img/cherry.jpg','img/watermelon.jpg'];
     // const images = ['img/bell.jpg','img/bell.jpg','img/bell.jpg','img/cherry.jpg','img/bell.jpg'];
 
-    // const images = ['img/bell.jpg','img/cherry.jpg','img/watermelon.jpg',
-    //   'img/diamond.jpg', 'img/bar.jpg', 'img/seven.jpg'];
+    const images = ['img/bell.jpg','img/cherry.jpg','img/watermelon.jpg',
+      'img/diamond.jpg', 'img/bar.jpg', 'img/seven.jpg'];
     return images[Math.floor(Math.random() * images.length)];
   }
 
