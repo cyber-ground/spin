@@ -454,21 +454,21 @@ function pointRate(arg) {
       total += 200 * arg;
         winPoint.textContent = 200 * arg;
       confettiShower(50, 150); 
-      giphyEmbedFrame('.watermelon', 57, 55, 3500); //bc60/47
+      giphyEmbedFrame('.watermelon', 57, 47, 3500); //bc60/47/55
     winRed_add_bigSpinRed_remove();
   } else if(panels[2].img.src.includes('cherry')) {
     pointsAdded = true;
       total += 200 * arg;
         winPoint.textContent = 200 * arg;
       confettiShower(50, 100);
-      giphyEmbedFrame('.cherry', 56, 65, 3000); //bc70/55
+      giphyEmbedFrame('.cherry', 56, 53, 3000); //bc70/55/65
     winRed_add_bigSpinRed_remove();
   } else if(panels[2].img.src.includes('bell')) {
     pointsAdded = true;
       total += 150 * arg;
         winPoint.textContent = 150 * arg;
       confettiShower(30, 100); 
-      giphyEmbedFrame('.bell', 43, 60, 3000); 
+      giphyEmbedFrame('.bell', 43, 50, 3000); //bc60
     winRed_add_bigSpinRed_remove();
   }
   // if(insertPoint.classList.contains('js_blank')) { // BIG SPIN READ TEST 
