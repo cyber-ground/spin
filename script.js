@@ -81,15 +81,15 @@ class Panel {
   } //* OUT OF Constructor 
 
   getRandomImg() {
-    // const images = ['img/diamond.jpg','img/diamond.jpg','img/seven.jpg','img/diamond.jpg','img/diamond.jpg','img/seven.jpg'];
+    const images = ['img/diamond.jpg','img/diamond.jpg','img/seven.jpg','img/diamond.jpg','img/diamond.jpg','img/seven.jpg'];
     // const images = ['img/seven.jpg','img/seven.jpg','img/seven.jpg','img/diamond.jpg','img/seven.jpg'];
     // const images = ['img/bar.jpg','img/seven.jpg','img/bar.jpg','img/seven.jpg','img/bar.jpg','img/seven.jpg'];
     // const images = ['img/cherry.jpg','img/cherry.jpg','img/cherry.jpg','img/cherry.jpg','img/watermelon.jpg'];
     // const images = ['img/watermelon.jpg','img/watermelon.jpg','img/watermelon.jpg','img/cherry.jpg','img/watermelon.jpg'];
     // const images = ['img/bell.jpg','img/bell.jpg','img/bell.jpg','img/cherry.jpg','img/bell.jpg'];
 
-    const images = ['img/bell.jpg','img/cherry.jpg','img/watermelon.jpg',
-      'img/diamond.jpg', 'img/bar.jpg', 'img/seven.jpg'];
+    // const images = ['img/bell.jpg','img/cherry.jpg','img/watermelon.jpg',
+    //   'img/diamond.jpg', 'img/bar.jpg', 'img/seven.jpg'];
     return images[Math.floor(Math.random() * images.length)];
   }
 
@@ -177,7 +177,6 @@ function checkForUnMatched() {
 function bigSpinFailure() {
   if(bigSpinX.classList.contains('activate') && !pointsAdded) {
     giphyEmbedFrame('.failure', 50, 46, 3000);
-    bigSpinX.classList.remove('activate'); // reset activate
   }
 }
 
@@ -188,7 +187,6 @@ function checkForTwoPairExtraSeven() {
     && panels[1].img.src.includes('seven')) {
       panels[1].disableUnMatchEffect();
     pointAdd_twoPairExtraSeven();
-    pointsAdded = true;
   }
 }
 
@@ -206,7 +204,6 @@ function checkForTwoPairExtraBar() {
     && panels[1].img.src.includes('bar')) {
       panels[1].disableUnMatchEffect();
     pointAdd_twoPairExtraBar();
-    pointsAdded = true;
   }
 }
 
@@ -217,7 +214,6 @@ function checkForTwoPairMatched() {
     if(panels[1].img.src.includes('seven')) return;
     if(panels[1].img.src.includes('bar')) return;
     pointAdd_twoPair();
-    pointsAdded = true;
   }
 }
 
@@ -479,11 +475,6 @@ function pointRate(arg) {
   //   console.log('contain read in pointRate');
   // }
 }
-
-
-
-
-
 
 //* check betX -----------------------------------------------------------
 
